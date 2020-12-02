@@ -49,6 +49,7 @@ function displayRepos(repos) {
         
         const cln = document.getElementsByClassName("repo_info")[0].cloneNode(true);
         cln.style.display = "block";
+        cln.href = repo.html_url;
         
         for (let i = 0; i < info.length; i++) {
             cln.children[i].children[0].innerHTML = info[i];
