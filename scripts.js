@@ -4,6 +4,12 @@ const fetchReposByUserName = async (user_name) => {
     return data;
 };
 
+const fetchReposByUserNameAndRepoName = async (user_name, repo_name) => {
+    const api_call = await fetch(`https://api.github.com/repos/${user_name}/${repo_name}`);
+    const data = await api_call.json();
+    return data;
+};
+
 function displayRepos(repos) {
     const repos_container = document.getElementById("repos")
     repos_container.innerHTML = "";
@@ -12,7 +18,7 @@ function displayRepos(repos) {
         const repo = repos[i];
         const info = [repo.name, repo.owner.login, repo.stargazers_count, repo.language];
         
-        let cln = document.getElementsByClassName("repo_info")[0].cloneNode(true);
+        const cln = document.getElementsByClassName("repo_info")[0].cloneNode(true);
         cln.style.display = "block";
         
         for (let i = 0; i < info.length; i++) {
@@ -30,7 +36,12 @@ function displayRepos(repos) {
 function findRepos() {
     event.preventDefault();
     const user_name = document.getElementById("user_name").value;
+    const repo_name = document.getElementById("repo_name").value;
     
-    
-    fetchReposByUserName(user_name).then(response => {displayRepos(response)});
+    if (user_name != "" && repo_name == "") {
+        fetchReposByUserName(user_name).then(response => {displayRepos(response)});
+    }
+    else if (user_name != "" && repo_name != "") {
+        fetchReposByUserNameAndRepoName(user_name, repo_name).then(response => {displayRepos([response])});
+    }
 }
