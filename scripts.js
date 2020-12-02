@@ -10,6 +10,12 @@ const fetchReposByUserNameAndRepoName = async (user_name, repo_name) => {
     return data;
 };
 
+const fetchReposByRepoName = async (repo_name) => {
+    const api_call = await fetch(`https://api.github.com/search/repositories?q=${repo_name}+in:name`);
+    const data = await api_call.json();
+    return data;
+};
+
 function displayRepos(repos) {
     const repos_container = document.getElementById("repos")
     repos_container.innerHTML = "";
@@ -43,5 +49,8 @@ function findRepos() {
     }
     else if (user_name != "" && repo_name != "") {
         fetchReposByUserNameAndRepoName(user_name, repo_name).then(response => {displayRepos([response])});
+    }
+    else if (user_name == "" && repo_name != "") {
+        fetchReposByRepoName(repo_name).then(response => {displayRepos(response.items)});
     }
 }
