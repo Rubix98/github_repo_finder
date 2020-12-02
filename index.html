@@ -10,26 +10,31 @@
      <meta name="keywords" content="GitHub, wyszukiwarka, repozytoria">
      <meta name="author" content="Marcin Wojdat">
      <meta http-equiv="X-Ua-Compatible" content="IE=edge,chrome=1">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      
      <link rel="stylesheet" href="styles.css">
      <script src="scripts.js"></script>
 
   </head>
   <body>
-    <form id="form" onSubmit="findRepos()" method="post">
-      <input type="text" id="user_name" placeholder="Podaj nazwę użytkownika"> <br> <br>
-      <input type="text" id="repo_name" placeholder="Podaj nazwę repozytorium"> <br> <br>
-      <input type="submit" id="submit_button" value="Szukaj">
-    </form>
-    
-    <div class="repo_info">
-      <div class="property"> Nazwa repozytorium: <span class="name"></span> </div>
-      <div class="property"> Nazwa właściciela: <span class="name"></span> </div>
-      <div class="property"> Ilość gwiazdek: <span class="name"></span> </div>
-      <div class="property"> Główny język: <span class="name"></span> </div>
+    <div id="main_container">
+      <h1>Wyszukiwarka repozytoriów GitHub</h1>
+      
+      <form id="form" onSubmit="findRepos()" method="post">
+        <input type="text" id="user_name" placeholder="Podaj nazwę użytkownika"> <br>
+        <input type="text" id="repo_name" placeholder="Podaj nazwę repozytorium"> <br>
+        <input type="submit" id="submit_button" value="Szukaj">
+      </form>
+      
+      <div class="repo_info">
+        <div class="repo_property"> Nazwa repozytorium: <span class="repo_value"></span> </div>
+        <div class="repo_property"> Nazwa właściciela: <span class="repo_value"></span> </div>
+        <div class="repo_property"> Ilość gwiazdek: <span class="repo_value"></span> </div>
+        <div class="repo_property"> Główny język: <span class="repo_value"></span> </div>
+      </div>
+      
+      <div id="repos"></div>
     </div>
-    
-    <div id="repos"></div>
   </body>
 
 </html>
