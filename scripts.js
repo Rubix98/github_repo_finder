@@ -1,24 +1,47 @@
 const fetchReposByUserName = async (user_name) => {
-    const api_call = await fetch(`https://api.github.com/users/${user_name}/repos`);
-    const data = await api_call.json();
-    return data;
+    const api_call = await fetch(`https://api.github.com/search/repositories?q=user:${user_name}`);
+    if (api_call.status != 200) {
+        return [];
+    }
+    else {
+        const data = await api_call.json();
+        return data.items;
+    }
 };
 
 const fetchReposByUserNameAndRepoName = async (user_name, repo_name) => {
-    const api_call = await fetch(`https://api.github.com/repos/${user_name}/${repo_name}`);
-    const data = await api_call.json();
-    return data;
+    const api_call = await fetch(`https://api.github.com/search/repositories?q=user:${user_name}+${repo_name}+in:name`);
+    if (api_call.status != 200) {
+        return [];
+    }
+    else {
+        const data = await api_call.json();
+        return data.items;
+    }
 };
 
 const fetchReposByRepoName = async (repo_name) => {
     const api_call = await fetch(`https://api.github.com/search/repositories?q=${repo_name}+in:name`);
-    const data = await api_call.json();
-    return data;
+    if (api_call.status != 200) {
+        return [];
+    }
+    else {
+        const data = await api_call.json();
+        return data.items;
+    }
 };
 
 function displayRepos(repos) {
-    const repos_container = document.getElementById("repos")
+    const error_message_containter = document.getElementById("error_message");
+    const repos_container = document.getElementById("repos");
     repos_container.innerHTML = "";
+    
+    if (repos.length == 0) {
+        error_message.innerHTML = "Brak pasujących wyników";
+    }
+    else {
+        error_message.innerHTML = "";
+    }
 
     for (let i = 0; i < repos.length; ++i) {
         const repo = repos[i];
@@ -48,9 +71,12 @@ function findRepos() {
         fetchReposByUserName(user_name).then(response => {displayRepos(response)});
     }
     else if (user_name != "" && repo_name != "") {
-        fetchReposByUserNameAndRepoName(user_name, repo_name).then(response => {displayRepos([response])});
+        fetchReposByUserNameAndRepoName(user_name, repo_name).then(response => {displayRepos(response)});
     }
     else if (user_name == "" && repo_name != "") {
-        fetchReposByRepoName(repo_name).then(response => {displayRepos(response.items)});
+        fetchReposByRepoName(repo_name).then(response => {displayRepos(response)});
+    }
+    else {
+        document.getElementById("error_message").innerHTML = "Podaj nazwę użytkownika i/lub nazwę repozytorium";
     }
 }

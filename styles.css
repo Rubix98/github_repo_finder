@@ -58,3 +58,7 @@ input[type="submit"] {
     margin-top: 20px;
 }
 
+#error_message {
+    font-weight: bold;
+}
+
