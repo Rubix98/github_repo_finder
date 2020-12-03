@@ -13,17 +13,23 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      
      <link rel="stylesheet" href="styles.css">
+     <link rel="stylesheet" href="fontello/css/fontello.css">
+     <link rel="preconnect" href="https://fonts.gstatic.com">
+     <link href="https://fonts.googleapis.com/css2?family=Catamaran&family=Fredoka+One&family=Nerko+One&display=swap" rel="stylesheet">
      <script src="scripts.js"></script>
 
   </head>
   <body>
     <div id="main_container">
+      <img src="img/github-logo.png">
       <h1>Wyszukiwarka repozytoriów GitHub</h1>
       
       <form id="form" onSubmit="findRepos()" method="post">
-        <input type="text" id="user_name" placeholder="Podaj nazwę użytkownika"> <br>
-        <input type="text" id="repo_name" placeholder="Podaj nazwę repozytorium"> <br>
-        <input type="submit" id="submit_button" value="Szukaj">
+        Podaj nazwę użytkownika: <br>
+        <input type="text" id="user_name" placeholder="Nazwa użytkownika"> <br>
+        Podaj nazwę repozytorium: <br>
+        <input type="text" id="repo_name" placeholder="Nazwa repozytorium"> <br>
+        <div style="text-align: right"><button id="submit_button"> Szukaj<i class="icon-search"></i></button></div>
       </form>
       
       <div id="error_message"></div>

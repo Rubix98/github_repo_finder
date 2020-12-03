@@ -1,48 +1,87 @@
 body {
-    background-color: silver;
+    /* This pattern is downloaded from www.subtlepatterns.com */
+    background-image: url("img/background.png");
     font-family: sans-serif;
 }
 
 #main_container {
     background-color: blue;
-    margin: 40px auto;
+    margin: 100px auto;
     padding: 30px;
     width: 80vw;
     text-align: center;
-    border-radius: 10px;
-    border: 1px solid black;
+    border-radius: 15px;
+    font-family: 'Nerko One', cursive;
+    color: white;
+    border: 2px solid #00A;
+}
+
+img {
+    width: 200px;
+    height: 200px;
+    transform: translate(-50%, -60%);
+    display: inline-block;
+    position: absolute;
+}
+
+h1 {
+    margin: 70px auto 50px auto;
+    color: white;
+    font-family: 'Fredoka One', cursive;
+}
+
+#form {
+    width: 60%;
+    margin: 0 auto;
+    padding: 0;
+    text-align: left;
+    font-size: 25px;
 }
 
 
 input[type="text"] {
-    width: 80%;
-    max-width: 400px;
+    box-sizing: border-box;
+    width: 100%;
     font-size: 25px;
     padding: 15px 40px;
-    border-radius: 5px;
-    margin: 10px;
+    border-radius: 50px;
+    margin: 15px 0;
+    border: 2px solid black;
 }
 
-input[type="submit"] {
-    background-color: green;
+button {
+    background: linear-gradient(lime, green);
     color: white;
     font-size: 20px;
     border-radius: 5px;
     padding: 5px 20px;
-    margin: 10px;
+    margin: 10px 0;
+    border: 1px solid white;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+button:hover {
+    transform: scale(1.05); 
+}
+
+input[type="text"]:focus, button:focus {
+    outline: 0; 
 }
 
 .repo_info {
     display: none;
-    background-color: yellow;
-    margin: 10px;
+    background: linear-gradient(yellow, orange);
+    margin: 15px 10px;
     text-align: left;
-    padding: 10px;
-    width: 200px;
-    border: 2px solid orange;
-    border-radius: 5px;
+    padding: 15px;
+    width: 300px;
+    font-size: 20px;
+    border: 2px solid black;
+    border-radius: 15px;
     color: black;
     text-decoration: none;
+    font-family: 'Catamaran', sans-serif;
 }
 
 .repo_property {
@@ -62,5 +101,13 @@ input[type="submit"] {
 
 #error_message {
     font-weight: bold;
+    color: red;
+    background-color: white;
+    width: 40%;
+    margin: 0 auto;
+    border: 2px solid red;
+    border-radius: 20px;
+    padding: 10px;
+    display: none;
 }
 

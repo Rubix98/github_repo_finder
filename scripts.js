@@ -63,9 +63,11 @@ function displayRepos(repos) {
     // Displaying hiding error messsage
     if (repos.length == 0) {
         error_message.innerHTML = "Brak pasujących wyników";
+        error_message.style.display = "block";
     }
     else {
         error_message.innerHTML = "";
+        error_message.style.display = "none";
     }
 
     for (let i = 0; i < repos.length; ++i) {
@@ -111,6 +113,10 @@ function findRepos() {
         fetchReposByRepoName(repo_name).then(response => {displayRepos(response)});
     }
     else {
-        document.getElementById("error_message").innerHTML = "Podaj nazwę użytkownika i/lub nazwę repozytorium";
+        const error_messgage = document.getElementById("error_message");
+        error_message.innerHTML = "Podaj nazwę użytkownika i/lub nazwę repozytorium";
+        error_message.style.display = "block";
+        const repos_container = document.getElementById("repos");
+        repos_container.innerHTML = "";
     }
 }
